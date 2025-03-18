@@ -1,5 +1,7 @@
 package com.exception;
 
-public class InvalidCommentDataException {
-
+public class InvalidCommentDataException extends RuntimeException{
+	public InvalidCommentDataException(String s) {
+		super(s);
+	}
 }

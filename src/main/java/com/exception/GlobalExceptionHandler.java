@@ -1,5 +1,8 @@
 package com.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
@@ -22,8 +25,17 @@ public class GlobalExceptionHandler {
 	 * Generic Exceptions 
 	 * 
 	 * InvalidRequestException → If the request body has missing or incorrect fields. 
-	 * DatabaseOperationException → For unexpected database failures.
 	 * 
 	 */
+	
+	
+	@ExceptionHandler(BlogNotFoundException.class)
+	public ResponseEntity<?> handleBlogNotFound(BlogNotFoundException exception){
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+	}
 
+	@ExceptionHandler(CommentNotFoundException.class)
+	public ResponseEntity<?> handleCommentnotFound(CommentNotFoundException exception){
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+	}
 }
