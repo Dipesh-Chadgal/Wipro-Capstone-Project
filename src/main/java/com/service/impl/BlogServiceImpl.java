@@ -28,7 +28,6 @@ public class BlogServiceImpl implements BlogService {
      *
      * @param blogRepo The {@link BlogRepository} for database operations.
      */
-    @Autowired
     public BlogServiceImpl(BlogRepository blogRepo) {
         this.blogRepo = blogRepo;
     }
@@ -40,7 +39,10 @@ public class BlogServiceImpl implements BlogService {
      */
     @Override
     public List<BlogDTO> getAllBlogs() {
-        return blogRepo.findAll()
+        
+    	List<BlogEntity> blogList = blogRepo.findAll();
+    
+    	return blogList
                 .stream()
                 .map(BlogMapper::convertToDTO)
                 .collect(Collectors.toList());
@@ -87,6 +89,7 @@ public class BlogServiceImpl implements BlogService {
 
         blog.setTitle(blogDto.getTitle());
         blog.setContent(blogDto.getContent());
+        blog.setAuthor(blogDto.getAuthor());
         blogRepo.save(blog);
 
         return BlogMapper.convertToDTO(blog);
@@ -118,6 +121,6 @@ public class BlogServiceImpl implements BlogService {
         BlogEntity blog = blogRepo.findByIdWithComments(blogId)
                 .orElseThrow(() -> new BlogNotFoundException("Blog with ID: " + blogId + " doesn't exist"));
 
-        return BlogMapper.convertToCommentDTO(blog);
+        return BlogMapper.convertToBlogWithCommentDTO(blog);
     }
 }

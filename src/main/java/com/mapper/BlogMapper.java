@@ -2,11 +2,13 @@ package com.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import com.dto.BlogDTO;
 import com.dto.BlogWithCommentDTO;
 import com.dto.CommentDTO;
 import com.entity.BlogEntity;
+import com.repository.BlogRepository;
 
 /**
  * Mapper class for converting between BlogEntity and DTOs. Provides utility
@@ -25,6 +27,8 @@ public class BlogMapper {
 		blog.setTitle(blogEntity.getTitle());
 		blog.setContent(blogEntity.getContent());
 		blog.setId(blogEntity.getId());
+		blog.setAuthor(blogEntity.getAuthor());
+		blog.setPublishedAt(blogEntity.getPublishedAt());
 		return blog;
 	}
 
@@ -39,6 +43,8 @@ public class BlogMapper {
 		blog.setId(blogDto.getId());
 		blog.setTitle(blogDto.getTitle());
 		blog.setContent(blogDto.getContent());
+		blog.setAuthor(blogDto.getAuthor());
+		
 		return blog;
 	}
 
@@ -49,7 +55,7 @@ public class BlogMapper {
 	 * @param blog The blog entity containing comments.
 	 * @return A {@link BlogWithCommentDTO} with blog and comment details.
 	 */
-	public static BlogWithCommentDTO convertToCommentDTO(BlogEntity blog) {
+	public static BlogWithCommentDTO convertToBlogWithCommentDTO(BlogEntity blog) {
 		BlogWithCommentDTO blogDto = new BlogWithCommentDTO();
 		List<CommentDTO> commentList = new ArrayList<>();
 
@@ -59,6 +65,8 @@ public class BlogMapper {
 		blogDto.setTitle(blog.getTitle());
 		blogDto.setContent(blog.getContent());
 		blogDto.setComments(commentList);
+		blogDto.setAuthor(blog.getAuthor());
+		blogDto.setPublishedAt(blog.getPublishedAt());
 
 		return blogDto;
 	}

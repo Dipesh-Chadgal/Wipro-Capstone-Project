@@ -1,9 +1,13 @@
 package com.entity;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -41,11 +45,25 @@ public class BlogEntity {
      * The list of comments associated with this blog post.
      * This establishes a one-to-many relationship between a blog and its comments.
      * Comments are cascaded, meaning they will be persisted or deleted along with the blog.
+     * Initializing comments as an empty ArrayList<>. Otherwise it will be Null;
      */
     @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
     private List<CommentEntity> comments = new ArrayList<>();
     
     
+    /**
+	 * The publishing date time of the blog.
+	 */
+	@CreationTimestamp
+	@Column(nullable = false, updatable = false)
+	private LocalDateTime publishedAt;
+    
+    /**
+     *  Name of Author of the Blog
+     */
+	private String author;
+	
+	
     /**
      * Getter and Setter methods for BlogEntity properties.
      */
@@ -82,7 +100,17 @@ public class BlogEntity {
 		this.comments = comments;
 	}
 	
-	
-	
+	public LocalDateTime getPublishedAt() {
+		return publishedAt;
+	}
 
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	
 }

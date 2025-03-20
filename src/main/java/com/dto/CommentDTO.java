@@ -1,6 +1,9 @@
 package com.dto;
 
+import java.time.LocalDateTime;
+
 import org.hibernate.validator.constraints.Length;
+
 import jakarta.validation.constraints.NotBlank;
 
 /**
@@ -28,6 +31,11 @@ public class CommentDTO {
      * This helps associate a comment with a specific blog post.
      */
     private Long blogId;
+    
+    /**
+     *  Creation Date & Time of the comment
+     */
+    private LocalDateTime createdAt;
 
     /**
      * Getter and Setter methods for CommentDTO properties.
@@ -55,4 +63,12 @@ public class CommentDTO {
     public void setBlogId(Long blogId) {
         this.blogId = blogId;
     }
+    
+    public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+    
+    public void setCreatedAt(LocalDateTime dateTime) {
+  		this.createdAt = dateTime;
+  	}
 }

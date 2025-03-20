@@ -1,5 +1,7 @@
 package com.dto;
 
+import java.time.LocalDateTime;
+
 import org.hibernate.validator.constraints.Length;
 import jakarta.validation.constraints.NotBlank;
 
@@ -34,12 +36,25 @@ public class BlogDTO {
      * <p>
      * Constraints:
      * - Cannot be blank.
-     * - Must be between 3 and 100 characters.
+     * - Must be between 3 and 200 characters.
      * </p>
      */
     @NotBlank
     @Length(min = 3, max = 200, message = "Content Length Must be between 3 to 200 Characters")
     private String content;
+    
+    /**
+     *  Name of Author of the Blog
+     */
+    @NotBlank
+    @Length(min = 3, max = 200, message = "Name Length Must be between 3 to 200 Characters")
+    private String author;
+    
+    
+    /**
+     *  Publishing Date & Time of the Blog
+     */
+    private LocalDateTime publishedAt;
 
     
     /**
@@ -68,5 +83,22 @@ public class BlogDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+	public LocalDateTime getPublishedAt() {
+		return publishedAt;
+	}
+
+	public void setPublishedAt(LocalDateTime publishedAt) {
+		this.publishedAt = publishedAt;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
     
+	
 }

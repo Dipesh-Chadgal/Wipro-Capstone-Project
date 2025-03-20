@@ -25,4 +25,13 @@ public interface CommentService {
      * @return The {@link CommentDTO} representing the retrieved comment.
      */
     CommentDTO fetchComment(Long id, Long commentId);
+    
+    /**
+     * Delete a specific comment from a blog.
+     *
+     * @param commentId The ID of the comment to delete.
+     * @return Boolean value representing the success of the deletion.
+     */
+    Boolean deleteComment(Long commentId, Long blogId);
+
 }

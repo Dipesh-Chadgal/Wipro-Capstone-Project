@@ -58,17 +58,23 @@ public class GlobalExceptionHandler {
      * Handles validation errors for method arguments.
      *
      * @param exception The thrown {@link MethodArgumentNotValidException}.
-     * @return A response entity with validation error details and HTTP status 400 (Bad Request).
+     * @return A response entity with validation error details and	 HTTP status 400 (Bad Request).
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handle(MethodArgumentNotValidException exception) {
-        List<String> details = new ArrayList<>();
-        exception.getBindingResult().getAllErrors().forEach((error) -> {
+    	   Map<String, Object> errorResponse = new HashMap<>();
+    	   errorResponse.put("error", HttpStatus.BAD_REQUEST.value());
+           errorResponse.put("message", "Constraint Validation Failed");
+           
+           exception.getBindingResult().getAllErrors().forEach((error) -> {
+        	
             String fieldName = ((FieldError) error).getField();
             String errorMessage = error.getDefaultMessage();
-            details.add(fieldName + " | " + errorMessage);
+            errorResponse.put(fieldName, errorMessage);
+
         });
-        return new ResponseEntity<>(details, HttpStatus.BAD_REQUEST);
+       
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
     /**

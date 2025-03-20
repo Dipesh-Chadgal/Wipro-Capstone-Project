@@ -20,6 +20,7 @@ public class CommentMapper {
         commentDto.setBlogId(commentEntity.getBlog().getId());
         commentDto.setId(commentEntity.getId());
         commentDto.setComment(commentEntity.getComment());
+        commentDto.setCreatedAt(commentEntity.getCreatedAt());
         return commentDto;
     }
 

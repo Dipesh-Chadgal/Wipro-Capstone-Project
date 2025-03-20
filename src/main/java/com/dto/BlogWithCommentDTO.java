@@ -1,5 +1,6 @@
 package com.dto;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -25,9 +26,20 @@ public class BlogWithCommentDTO {
 	private String content;
 
 	/**
-	 * A list of comments associated with this blog post. This helps retrieve all comments linked to a specific blog.
+	 * A list of comments associated with this blog post. This helps retrieve all
+	 * comments linked to a specific blog.
 	 */
 	private List<CommentDTO> comments;
+
+	/**
+	 * Name of Author of the Blog
+	 */
+	private String author;
+
+	/**
+	 * Publishing Date & Time of the Blog
+	 */
+	private LocalDateTime publishedAt;
 
 	public Long getId() {
 		return id;
@@ -59,6 +71,22 @@ public class BlogWithCommentDTO {
 
 	public void setComments(List<CommentDTO> comments) {
 		this.comments = comments;
+	}
+
+	public LocalDateTime getPublishedAt() {
+		return publishedAt;
+	}
+
+	public void setPublishedAt(LocalDateTime publishedAt) {
+		this.publishedAt = publishedAt;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
 }
