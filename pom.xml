@@ -63,13 +63,19 @@
 
 	</dependencies>
 	<build>
-	<finalName>wipro-capstone</finalName>
+		<finalName>wipro-capstone</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.sonarsource.scanner.maven</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
 				<version>3.11.0.3922</version>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
+
 		</plugins>
 	</build>
 </project>
