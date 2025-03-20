@@ -46,7 +46,7 @@ public class CommentEntity {
 		return id;
 	}
 	public void setId(long id) {
-		id = id;
+		this.id = id;
 	}
 	public BlogEntity getBlog() {
 		return blog;
